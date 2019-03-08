@@ -1,14 +1,18 @@
 package org.anyname.nullsafety;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-
 import org.anyname.nullsafety.NullableTest.NonNullApiClass.StandardApiExtention;
 import org.anyname.nullsafety.NullableTest.StandardClass.NonNullApiExtention;
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Tests with idioms interesting for null-safety analysis. They more document behaviour of how nullable annotations are
+ * interpreted by various tools then test anything.
+ */
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class NullableTest {
 

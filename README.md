@@ -4,7 +4,7 @@ There are many `@NotNull`/`@Nullable` annotations and tools interpreting them. T
 It may be overwhelming to choose which of them to use. The aim of this project is to 
 show some of the possible choices. 
 
-The idea to bring nullsafety to Java was [inspired by Kotlin](inspired_by_kotlin.md).
+The idea to bring nullsafety to Java was [inspired by Kotlin](https://github.com/marycha/null-safety/wiki/Inspiration:-null-safety-in-Kotlin).
 
 :construction: :construction: :construction:
 
@@ -12,7 +12,7 @@ The idea to bring nullsafety to Java was [inspired by Kotlin](inspired_by_kotlin
 1. [`@Nullable` annotations with rationale of API choices](src/main/java/org/anyname/nullsafety/package-info.java) + [test](src/test/java/org/anyname/nullsafety/NullableTest.java) to document the behaviour (with different tools)
 2. System boundaries: [test](src/test/java/org/anyname/nullsafety/NullsafetyBounderyTest.java) to verify that each field of types implementing `NullsafetyBoundary` is either `@NotNull` (from *Java Beans Validation API*, validated at runtime during deserialization) or `@Nullable` (verified at compile-time) + [example POJOs](src/main/java/org/anyname/xml/) where bindings framework, in this case jaxb, injects values at runtime
 3. Maven config for compile time verification: NullAway (via error-prone) and Checker Framework - TBD
-4. Legacy code: [some tools and thought](legacy_code.md) on how to approach annotating legacy code
+4. Legacy code: [some tools and thought](https://github.com/marycha/null-safety/wiki/Legacy-code:-tips-for-migration) on how to approach annotating legacy code
 5. IDEs setup - TBD
 
 
@@ -34,7 +34,7 @@ The idea to bring nullsafety to Java was [inspired by Kotlin](inspired_by_kotlin
 ##### How? - Tools
 
 Aim: detect as early as possible as many issues as possible.
-The earlier an issues is detected, the better (less overhead to fix it, shorter feedback loop), but we don't want to do it at a cost of introducing noticeable time overhead for IDE parser/compilation/...
+The earlier an issues is detected, the better (less overhead to fix it, shorter feedback loop), but we don't want to do it at a cost of introducing noticeable time overhead for IDE parser or local compilation.
 
 * IntelliJ IDE and Eclipse - brings attention while writing - both can be configured with custom annotations
 

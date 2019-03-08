@@ -1,11 +1,12 @@
-# null-safety
+# null-safety [![Build Status](https://travis-ci.com/marycha/null-safety.svg?branch=master)](https://travis-ci.com/marycha/null-safety)
+
 There are many `@NotNull`/`@Nullable` annotations and tools interpreting them. There is no standard solution.
 It may be overwhelming to choose which of them to use. The aim of this project is to 
 show some of the possible choices. 
 
 The idea to bring nullsafety to Java was [inspired by Kotlin](inspired_by_kotlin.md).
 
-:construction: :construction: :construction: :construction: :construction:
+:construction: :construction: :construction:
 
 ##### Contents
 1. [`@Nullable` annotations with rationale of API choices](src/main/java/org/anyname/nullsafety/package-info.java) + [test](src/test/java/org/anyname/nullsafety/NullableTest.java) to document the behaviour (with different tools)

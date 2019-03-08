@@ -14,16 +14,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
 
-public class XMLDeserializer<T extends XMLObject> {
+public class XMLSerializer<T extends XMLObject> {
 
     private static final ValidatorFactory DEFAULT_VALIDATOR_FACTORY = Validation.buildDefaultValidatorFactory();
     private final ValidatorFactory validatorFactory;
 
-    XMLDeserializer() {
+    XMLSerializer() {
         this(DEFAULT_VALIDATOR_FACTORY);
     }
 
-    XMLDeserializer(ValidatorFactory validatorFactory) {
+    XMLSerializer(ValidatorFactory validatorFactory) {
         this.validatorFactory = validatorFactory;
     }
 
@@ -35,12 +35,13 @@ public class XMLDeserializer<T extends XMLObject> {
         marshaller.marshal(object, outputStream);
     }
 
+    @Nullable
     public static <S extends XMLObject> S deserialize(Class<S> objectClass, InputStream inputStream)
             throws JAXBException, ConstraintViolationException {
-        XMLDeserializer<S> xmlDeserializer = new XMLDeserializer<>();
+        XMLSerializer<S> deserializer = new XMLSerializer<>();
 
-        S xmlObject = xmlDeserializer.unmarshal(inputStream, objectClass);
-        xmlDeserializer.validate(xmlObject);
+        S xmlObject = deserializer.unmarshal(inputStream, objectClass);
+        deserializer.validate(xmlObject);
         return xmlObject;
     }
 

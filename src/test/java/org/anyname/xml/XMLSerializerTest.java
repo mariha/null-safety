@@ -10,11 +10,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 
-public class XMLDeserializerTest {
+public class XMLSerializerTest {
 
     @Test
     public void testNotNullValidation() throws Exception {
-        final XMLDeserializer<NotNullAnnotation> deserializer = new XMLDeserializer();
+        final XMLSerializer<NotNullAnnotation> deserializer = new XMLSerializer();
 
         try {
             deserializer.validate(new NotNullAnnotation(null));
@@ -41,10 +41,10 @@ public class XMLDeserializerTest {
         Product orginalProduct = new Product("KS1024", "Ravensburger Krypt Silver", "https://ssl-static-images.ravensburger.de/images/produktseiten/1024/15964_1.jpg", new BigDecimal(19.99), user);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        XMLDeserializer.serialize(orginalProduct, outputStream);
+        XMLSerializer.serialize(orginalProduct, outputStream);
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-        Product readProduct = XMLDeserializer.deserialize(Product.class, inputStream);
+        Product readProduct = XMLSerializer.deserialize(Product.class, inputStream);
 
         Assertions.assertThat(readProduct).isEqualToComparingFieldByFieldRecursively(orginalProduct);
     }

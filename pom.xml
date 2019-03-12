@@ -11,6 +11,8 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <profiles>
@@ -48,9 +50,9 @@
 
                                 <!-- Silence error-prone checks -->
                                 <!--<arg>-XepAllErrorsAsWarnings</arg>-->
-                                <arg>-XepDisableAllChecks</arg>
+                                <!--<arg>-XepDisableAllChecks</arg>-->
 
-                                <!-- Overwrite above to make nul-away issues visible -->
+                                <!-- Overwrite above to make null-away issues visible -->
                                 <arg>-Xep:NullAway:ERROR</arg>
                                 <!--<arg>-Xep:NullAway:WARN</arg>-->
 

@@ -5,7 +5,7 @@ import org.anyname.nullsafety.NullableTest.StandardClass.NonNullApiExtention;
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,8 +23,8 @@ public class NullableTest {
     private final NonNullApiExtention nonNullApiInStandardScope = new NonNullApiExtention();
     private final StandardApiExtention standardApiInNonNullScope = new StandardApiExtention();
 
-    private final List<@Nullable Object> listOfNullables = new LinkedList<>();
-    private final List<Object> listOfUnknowns = new LinkedList<>();
+    private final List<@Nullable Object> listOfNullables = new ArrayList<>();
+    private final List<Object> listOfUnknowns = new ArrayList<>();
 
     @Test(expected = NullPointerException.class)
     public void dereferencingNullable_isPrevented() {

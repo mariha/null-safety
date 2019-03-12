@@ -7,7 +7,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class User implements XMLObject {
 
     @NotNull

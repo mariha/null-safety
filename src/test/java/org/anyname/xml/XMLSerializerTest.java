@@ -17,7 +17,12 @@ public class XMLSerializerTest {
         final XMLSerializer<NotNullAnnotation> deserializer = new XMLSerializer();
 
         try {
-            deserializer.validate(new NotNullAnnotation(null));
+            // NullAway won't allow to call new NotNullAnnotation(null) so we cheat it
+            // so that we can test our validation code when 'null' value is injected at runtime
+            NotNullAnnotation objToValidate = new NotNullAnnotation(new Object());
+            NotNullAnnotation.class.getDeclaredField("field").set(objToValidate, null);
+
+            deserializer.validate(objToValidate);
             Fail.fail("NotNull validation of 'null' object should have thrown an ex");
         } catch (final ConstraintViolationException ex) {
             // expected
@@ -28,7 +33,7 @@ public class XMLSerializerTest {
 
     private static class NotNullAnnotation implements XMLObject {
         @NotNull
-        private final Object field;
+        Object field;
 
         private NotNullAnnotation(final Object field) {
             this.field = field;

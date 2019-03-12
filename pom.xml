@@ -13,6 +13,77 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <profiles>
+        <profile>
+            <!-- Compiles the code with error-prone and null-away, static code analysis tools -->
+            <id>error-prone</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.0</version>
+
+                        <configuration>
+                            <compilerId>javac-with-errorprone</compilerId>
+                            <forceJavacCompilerUse>true</forceJavacCompilerUse>
+
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>0.6.6</version>
+                                </path>
+                            </annotationProcessorPaths>
+
+                            <showWarnings>true</showWarnings>
+                            <compilerArgs>
+                                <!-- Enables NullAway analysis -->
+                                <!-- Invocation to a method of a class outside specified packages are optimistically
+                                 assumed that all parameters are @Nullable and the return value is @NonNull -->
+                                <arg>-XepOpt:NullAway:AnnotatedPackages=org.anyname</arg>
+
+                                <!-- Silence error-prone checks -->
+                                <!--<arg>-XepAllErrorsAsWarnings</arg>-->
+                                <arg>-XepDisableAllChecks</arg>
+
+                                <!-- Overwrite above to make nul-away issues visible -->
+                                <arg>-Xep:NullAway:ERROR</arg>
+                                <!--<arg>-Xep:NullAway:WARN</arg>-->
+
+                                <arg>-XepOpt:NullAway:ExternalInitAnnotations=javax.xml.bind.annotation.XmlRootElement
+                                </arg>
+                                <arg>-XepOpt:NullAway:ExcludedClasses=org.anyname.nullsafety.NullableTest</arg>
+
+                                <!-- Ignore error-prone warnings in generated code -->
+                                <arg>-XepDisableWarningsInGeneratedCode</arg>
+                                <arg>-XepOpt:NullAway:TreatGeneratedAsUnannotated=true</arg>
+                            </compilerArgs>
+                        </configuration>
+
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.plexus</groupId>
+                                <artifactId>plexus-compiler-javac-errorprone</artifactId>
+                                <version>2.8.3</version>
+                            </dependency>
+
+                            <!-- override plexus-compiler-javac-errorprone's dependency on Error Prone with the latest version -->
+                            <dependency>
+                                <groupId>com.google.errorprone</groupId>
+                                <artifactId>error_prone_core</artifactId>
+                                <version>2.3.2</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>

@@ -2,9 +2,9 @@
 ============
 
 There are many `@NotNull`/`@Nullable` annotations and tools interpreting them. There is no standard solution.
-The aim of this project is to show some of the possible choices which together make a holistic solution to eliminate NPEs. 
+The aim of this project is to show some of the possible choices which together make a holistic approach to eliminate NPEs. 
 
-The idea to bring nullsafety to Java was [inspired by Kotlin](https://github.com/marycha/null-safety/wiki/Inspiration:-null-safety-in-Kotlin).
+The idea to bring nullsafety to Java was [inspired by Kotlin](../../wiki/Inspiration:-null-safety-in-Kotlin).
 
 :construction: :construction: :construction:
 
@@ -13,12 +13,12 @@ The idea to bring nullsafety to Java was [inspired by Kotlin](https://github.com
 Compile-time verification based on data-flow analysis:
 1. [`@Nullable` annotations with rationale of API choices](src/main/java/org/anyname/nullsafety/package-info.java) + [test](src/test/java/org/anyname/nullsafety/NullableTest.java) to document the behaviour (with different tools)
 2. External libraries - TBD
-3. Legacy code: [some tools and thought](https://github.com/marycha/null-safety/wiki/Legacy-code:-tips-for-migration) on how to approach annotating legacy code
+3. Legacy code: [some tools and thought](../../wiki/Legacy-code:-tips-for-migration) on how to approach annotating legacy code
 
 Runtime validation of input data:
 4. System boundaries: [test](src/test/java/org/anyname/nullsafety/NullsafetyBounderyTest.java) to verify that each field of types implementing `NullsafetyBoundary` is either `@NotNull` (from *Java Beans Validation API*, validated at runtime during deserialization) or `@Nullable` (verified at compile-time) + [example POJOs](src/main/java/org/anyname/xml/) where bindings framework, in this case jaxb, injects values at runtime
 
-5. [Maven config and IDEs setup](wiki/Tools-configuration)
+5. [Maven config and IDEs setup](../../wiki/Tools-configuration)
 
  Levels of nullsafety
 ----------------------------------
@@ -42,3 +42,5 @@ The earlier an issues is detected, the better - less overhead to fix it, shorter
 
 7. legacy code - there are tools which can be used to automatically add annotations to already existing code. As the codebase grows, new code can hold to higher standards and existing code can stay unannotated.
 
+---
+More details can be found on our [wiki](../../wiki) pages.

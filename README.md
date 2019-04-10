@@ -8,20 +8,24 @@ The idea to bring nullsafety to Java was [inspired by Kotlin](../../wiki/Inspira
 
 :construction: :construction: :construction:
 
+
  Contents
 ----------------
+
 Compile-time verification based on data-flow analysis:
 1. [`@Nullable` annotations with rationale of API choices](src/main/java/org/anyname/nullsafety/package-info.java) + [test](src/test/java/org/anyname/nullsafety/NullableTest.java) to document the behaviour (with different tools)
 2. External libraries - TBD
 3. Legacy code: [some tools and thought](../../wiki/Legacy-code:-tips-for-migration) on how to approach annotating legacy code
 
-Runtime validation of input data:
+Runtime validation of input data: \
 4. System boundaries: [test](src/test/java/org/anyname/nullsafety/NullsafetyBounderyTest.java) to verify that each field of types implementing `NullsafetyBoundary` is either `@NotNull` (from *Java Beans Validation API*, validated at runtime during deserialization) or `@Nullable` (verified at compile-time) + [example POJOs](src/main/java/org/anyname/xml/) where bindings framework, in this case jaxb, injects values at runtime
 
 5. [Maven config and IDEs setup](../../wiki/Tools-configuration)
 
+
  Levels of nullsafety
 ----------------------------------
+
 Aim: detect as early as possible as many issues as possible.
 The earlier an issues is detected, the better - less overhead to fix it, shorter feedback loop. We don't want to do it at a cost of introducing noticeable time overhead for IDE parser or local compilation.
 

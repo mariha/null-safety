@@ -1,4 +1,4 @@
- null-safety [![Build Status](https://travis-ci.com/marycha/null-safety.svg?branch=master)](https://travis-ci.com/marycha/null-safety)
+ null-safety [![Build Status](https://travis-ci.com/mariha/null-safety.svg?branch=master)](https://travis-ci.com/mariha/null-safety)
 ============
 
 Annotations which are meant to bring null-safety to the codebase. 
